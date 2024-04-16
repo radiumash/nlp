@@ -1,7 +1,5 @@
-matplotlib
 nltk
 numpy
-pandas
-plotly
 streamlit
 tensorflow
+keras

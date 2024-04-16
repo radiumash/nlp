@@ -1,10 +1,5 @@
-import pandas as pd
-import csv
 import numpy as np
-import matplotlib.pylab as plt
-import plotly.graph_objs as go
 import streamlit as st
-import pickle
 import tensorflow as tf
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
@@ -43,7 +38,7 @@ blog = st.text_area("Blog post:")
 st.write(f'You wrote {len(blog)} characters.')    
 if st.button("Predict", type="primary"):
     if blog != "":
-        model = tf.keras.models.load_model("bbc_text_classification_6.h5", compile=False)
+        model = tf.keras.models.load_model("./models/bbc_text_classification_6.h5", compile=False)
         # Preprocess the single news row
         preprocessed_single_news = preprocess_text(blog)
 
