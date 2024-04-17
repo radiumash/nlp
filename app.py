@@ -40,7 +40,7 @@ st.write(f'You wrote {len(blog)} characters.')
 if st.button("Predict", type="primary"):
     if blog != "":
         path_to_model = './models/bbc_text_classification_6.h5'
-        model = load_model(path_to_model, compile=False)
+        model = tf.keras.models.load_model(path_to_model, compile=False)
         # Preprocess the single news row
         preprocessed_single_news = preprocess_text(blog)
 
