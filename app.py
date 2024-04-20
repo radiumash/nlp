@@ -3,7 +3,6 @@ import streamlit as st
 import tensorflow as tf
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-from keras.models import load_model
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
@@ -40,7 +39,7 @@ st.write(f'You wrote {len(blog)} characters.')
 if st.button("Predict", type="primary"):
     if blog != "":
         path_to_model = './models/bbc_text_classification_6.h5'
-        model = tf.keras.models.load_model(path_to_model, compile=False)
+        model = tensorflow.keras.models.load_model(path_to_model, compile=False)
         # Preprocess the single news row
         preprocessed_single_news = preprocess_text(blog)
 
