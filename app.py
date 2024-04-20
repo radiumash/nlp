@@ -39,7 +39,7 @@ blog = st.text_area("Blog post:")
 st.write(f'You wrote {len(blog)} characters.')    
 if st.button("Predict", type="primary"):
     if blog != "":
-        path_to_model = 'bbc_text_classification_6.h5'
+        path_to_model = './models/bbc_text_classification_6.h5'
         model = tf.keras.models.load_model(path_to_model, compile=False)
         # Preprocess the single news row
         preprocessed_single_news = preprocess_text(blog)
@@ -60,6 +60,6 @@ if st.button("Predict", type="primary"):
         ind = np.array(predicted_prob).argmax(axis=-1)
         st.write(predicted_prob)
         if(int(ind)<5):
-            st.write(labels[int(ind)])
+            st.write("Predicted Label: **%s**" % str(labels[int(ind)]).capitalize())
         else:
-            st.write(labels[int(ind)-1])
+            st.write("Predicted Label: **%s**" % str(labels[int(ind)-1]).capitalize())
