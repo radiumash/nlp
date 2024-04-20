@@ -16,11 +16,6 @@ STOPWORDS = nltk.corpus.stopwords.words('english')
 
 lemmatizer = WordNetLemmatizer()
 
-def preprocess_text(text):
-    tokens = word_tokenize(text.lower())  # Tokenization
-    filtered_tokens = [lemmatizer.lemmatize(w) for w in tokens if w.isalnum() and not w in STOPWORDS]  # Remove stopwords and lemmatize
-    return ' '.join(filtered_tokens)
-
 vocab_size = 5000
 embedding_dim = 64
 max_length = 200
@@ -28,6 +23,11 @@ trunc_type = 'post'
 padding_type = 'post'
 oov_tok = '<OOV>'
 training_portion = .8
+
+def preprocess_text(text):
+    tokens = word_tokenize(text.lower())  # Tokenization
+    filtered_tokens = [lemmatizer.lemmatize(w) for w in tokens if w.isalnum() and not w in STOPWORDS]  # Remove stopwords and lemmatize
+    return ' '.join(filtered_tokens)
 
 # Layout Width
 st. set_page_config(layout="centered")
@@ -38,8 +38,8 @@ blog = st.text_area("Blog post:")
 st.write(f'You wrote {len(blog)} characters.')    
 if st.button("Predict", type="primary"):
     if blog != "":
-        path_to_model = './models/bbc_text_classification_6.h5'
-        model = tensorflow.keras.models.load_model(path_to_model, compile=False)
+        path_to_model = "./models/bbc_text_classification_6.h5"
+        model = tf.keras.models.load_model(path_to_model, compile=False)
         # Preprocess the single news row
         preprocessed_single_news = preprocess_text(blog)
 
