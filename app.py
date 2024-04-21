@@ -7,6 +7,8 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 import nltk
+from pathlib import Path
+
 # Download NLTK resources
 nltk.download('punkt')
 nltk.download('stopwords')
@@ -38,7 +40,7 @@ blog = st.text_area("Blog post:")
 st.write(f'You wrote {len(blog)} characters.')    
 if st.button("Predict", type="primary"):
     if blog != "":
-        path_to_model = "/workspaces/nlp/models/bbc_text_classification_6.h5"
+        path_to_model = Path(__file__).parents[0] / 'models/bbc_text_classification_6.h5'
         model = tf.keras.models.load_model(path_to_model, compile=False)
         # Preprocess the single news row
         preprocessed_single_news = preprocess_text(blog)
